@@ -55,7 +55,7 @@ xgb_params = list(
 #bst.cv <- xgb.cv(param=xgb_params, data = xx,  nfold = 5, nrounds=cv.nround)
 x_test_sj <- sj_test[,-c(1:5)]
 xx_test_sj <- xgb.DMatrix(as.matrix(x_test_sj))
-model_sj <- xgb.train(xgb_params, xx_train_sj, nrounds = 1000, early_stopping_rounds = 20)
+model_sj <- xgb.train(xgb_params, xx_train_sj, nrounds = 1000)
 
 ####xgboost for iq
 y_train_iq <- as.numeric(iq_train[,4])
