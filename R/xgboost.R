@@ -43,7 +43,7 @@ xgb_params = list(
   objective = 'reg:linear',
   colsample_bytree=1,
   eta=0.005,
-  max_depth=20,
+  max_depth=5,
   min_child_weight=3,
   alpha=0.3,
   lambda=0.4,
@@ -52,7 +52,7 @@ xgb_params = list(
   silent=TRUE)
 
 #cv.nround <- 5000
-#bst.cv <- xgb.cv(param=xgb_params, data = xx,  nfold = 5, nrounds=cv.nround)
+#bst.cv <- xgb.cv(param=xgb_params, data = xx_train_sj,  nfold = 100, nrounds=cv.nround)
 x_test_sj <- sj_test[,-c(1:5)]
 xx_test_sj <- xgb.DMatrix(as.matrix(x_test_sj))
 model_sj <- xgb.train(xgb_params, xx_train_sj, nrounds = 1000)
@@ -78,7 +78,7 @@ xgb_params = list(
   silent=TRUE)
 
 #cv.nround <- 5000
-#bst.cv <- xgb.cv(param=xgb_params, data = xx,  nfold = 5, nrounds=cv.nround)
+#bst.cv <- xgb.cv(param=xgb_params, data = xx_train_iq,  nfold = 100, nrounds=cv.nround)
 x_test_iq <- iq_test[,-c(1:5)]
 xx_test_iq <- xgb.DMatrix(as.matrix(x_test_iq))
 model_iq <- xgb.train(xgb_params, xx_train_iq, nrounds = 1000)
