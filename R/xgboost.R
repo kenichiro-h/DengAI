@@ -90,3 +90,4 @@ test_label_iq <- round(predict(model_iq, newdata = xx_test_iq, type = "raw"))
 #####accuracy
 MAE(pred = test_label_sj, obs = sj_test$total_cases)
 MAE(pred = test_label_iq, obs = iq_test$total_cases)
+MAE(pred = c(test_label_sj,test_label_iq), obs = c(sj_test$total_cases,iq_test$total_cases))
