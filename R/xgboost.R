@@ -56,7 +56,8 @@ xgb_params = list(
 #bst.cv <- xgb.cv(param=xgb_params, data = xx_train_sj,  nfold = 100, nrounds=cv.nround)
 x_test_sj <- sj_test[,-c(1:5)]
 xx_test_sj <- xgb.DMatrix(as.matrix(x_test_sj))
-model_sj <- xgb.train(xgb_params, xx_train_sj, nrounds = 1000)
+watchlist <- list(eval = xgb.DMatrix(as.matrix(x_test_sj),label=sj_test[,4]), train = xx_train_sj)
+model_sj <- xgb.train(xgb_params, xx_train_sj, nrounds = 300, watchlist)
 
 ####xgboost for iq
 y_train_iq <- as.numeric(iq_train[,4])
@@ -83,7 +84,8 @@ xgb_params = list(
 #bst.cv <- xgb.cv(param=xgb_params, data = xx_train_iq,  nfold = 100, nrounds=cv.nround)
 x_test_iq <- iq_test[,-c(1:5)]
 xx_test_iq <- xgb.DMatrix(as.matrix(x_test_iq))
-model_iq <- xgb.train(xgb_params, xx_train_iq, nrounds = 1000)
+watchlist <- list(eval = xgb.DMatrix(as.matrix(x_test_iq),label=iq_test[,4]), train = xx_train_iq)
+model_iq <- xgb.train(xgb_params, xx_train_iq, nrounds = 300, watchlist)
 
 #####Prediction
 test_label_sj <- round(predict(model_sj, newdata = xx_test_sj, type = "raw"))
