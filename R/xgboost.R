@@ -41,6 +41,7 @@ set.seed(100)
 xgb_params = list(
   booster = 'gbtree',
   objective = 'reg:linear',
+  eval_metric = 'mae',
   colsample_bytree=1,
   eta=0.005,
   max_depth=20,
@@ -67,6 +68,7 @@ set.seed(100)
 xgb_params = list(
   booster = 'gbtree',
   objective = 'reg:linear',
+  eval_metric = 'mae',
   colsample_bytree=1,
   eta=0.005,
   max_depth=20,
